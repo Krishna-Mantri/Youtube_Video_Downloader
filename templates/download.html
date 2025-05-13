@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Downloader</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+        }
+        input[type="text"], select {
+            background: rgba(255, 255, 255, 0.8);
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        p {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head> 
+<body> 
+    <div class="container">
+        <h1>YouTube Video Downloader</h1> 
+        <form method="post"> 
+            {% csrf_token %} 
+            <label for="link">Enter YouTube Video URL:</label> 
+            <input type="text" id="link" name="link" placeholder="Paste video link here..." required>
+            <br>
+            <label for="format">Select Format:</label>
+            <select id="format" name="format">
+                <option value="video">Video</option>
+                <option value="audio">Audio (MP3)</option>
+            </select>
+            <br>
+            <input type="submit" value="Download"> 
+        </form> 
+        {% if message %}
+            <p style="color: lightgreen;">{{ message }}</p>
+        {% endif %}
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+    </div>
+</body> 
+</html>
